@@ -1,27 +1,25 @@
-//declare variables
+// Declare variables outside the function for better scope
 let attempts = 0;
-let randomNumber =Math.floor (Math.random()* 100 + 1);
-const guess = document.getElementById("guess"); 
-const submit = document.getElementById("submit");
-const hint = document.getElementById("hint");
+let randomNumber = Math.floor(Math.random() * 100) + 1; // Generate random number once
+const guessInput = document.getElementById("guess");
+const submitButton = document.getElementById("submit");
+const hintText = document.getElementById("hint");
 const attemptsText = document.getElementById("attempts");
-//event listeners
-submit.addEventListener("click", checkGuess );
-function checkGuess(){
-    const userValue = Number(guess.value);
-    attempts++;
-//conditionals
-if (userValue===randomNumber) {
-    hint.textContent = "Congratulations , you guessed it!";
-    
-} else if (userValue < randomNumber){
-    hint.textContent = "Too low! Try again.";
-    
-}else{
-    hint.textContent = "Too high! Try again.";
 
-} 
-attemptsText.textContent = "attempts:" + attempts;
+// Event listener for the submit button
+submitButton.addEventListener("click", checkGuess);
+
+function checkGuess() {
+  const userValue = Number(guessInput.value);
+  attempts++;
+
+  // Use a ternary operator for concise conditional logic
+  hintText.textContent =
+    userValue === randomNumber
+      ? "Congratulations, you guessed it!"
+      : userValue < randomNumber
+      ? "Too low! Try again."
+      : "Too high! Try again.";
+
+  attemptsText.textContent = "attempts: " + attempts;
 }
-
-
